@@ -1,0 +1,48 @@
+        <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid"> 
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><img src="app/assets/img/logo.jpg.png"></a> 
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>                
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="fa fa-comment" aria-hidden="true"></i> Messages</a></li>
+                <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i> Notifications</a></li>
+                <li><a href="#" ng-click="user.Logout();"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+              </ul>  
+            </div>
+        </div>
+    </nav>
+        <!-- Sidebar -->
+        
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" ng-controller="uploadCtrl">
+            <div class="container-fluid">
+                <h1>Your Account is Banned</h1>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+    <!-- Menu Toggle Script -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+-->
+
+

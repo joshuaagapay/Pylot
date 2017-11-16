@@ -1,0 +1,75 @@
+        <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid"> 
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><img src="app/assets/img/logo.jpg.png"></a> 
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>                
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="fa fa-comment" aria-hidden="true"></i> Messages</a></li>
+                <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i> Notifications</a></li>
+                <li><a href="#" ng-click="user.Logout();"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+              </ul>  
+            </div>
+        </div>
+    </nav>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                    <div class="sidebar-userview">
+                        <a href="#!user"><img class="Circle" src="{{user.img}}"></a>
+                        <a href="#!name">{{user.username}}</a>
+                        <a href="#!email">{{user.email}}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="indent">
+                        <a href="/home"><i class="fa fa-search" aria-hidden="true"></i>Home</a>
+                        <a href="/account/{{user.id}}"><i class="fa fa-id-card-o" aria-hidden="true"></i>Edit Account</a>
+                        <a href="/portfolio"><i class="fa fa-folder" aria-hidden="true"></i>My Portfolio</a>
+                        <a href="#"><i class="fa fa-book" aria-hidden="true"></i>Recommendations</a>
+                        <a href="#"><i class="fa fa-binoculars" aria-hidden="true"></i>Monitoring</a>
+                    </div>  
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <form ng-submit="recommend(recommendId);">                       
+                    <!-- Game name Input -->
+                     <label for="status">Recommend To:</label>
+                     <select class="form-control" name="userlist" id="status" ng-model="recommendId">
+                            <option ng-repeat="option in recommendusers" value="{{option._id}}">{{option.username}}</option>    
+                     </select>    
+                    <br>                                   
+                    <button type="submit" class="btn btn-primary">Send</button>          
+                </form>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+    <!-- Menu Toggle Script -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+-->
+
+

@@ -1,0 +1,133 @@
+        <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid"> 
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><img src="app/assets/img/logo.jpg.png"></a> 
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>                
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="fa fa-comment" aria-hidden="true"></i> Messages</a></li>
+                <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i> Notifications</a></li>
+                <li><a href="#" ng-click="user.Logout();"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+              </ul>  
+            </div>
+        </div>
+    </nav>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                    <div class="sidebar-userview">
+                        <a href="#!user"><img class="Circle" src="{{user.img}}"></a>
+                        <a href="#!name">{{user.username}}</a>
+                        <a href="#!email">{{user.email}}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="indent">
+                            <a href="/home"><i class="fa fa-search" aria-hidden="true"></i>Home</a>
+                            <a href="/account/{{user.id}}"><i class="fa fa-id-card-o" aria-hidden="true"></i>Edit Account</a>
+                            <a href="/portfolio"><i class="fa fa-folder" aria-hidden="true"></i>My Portfolio</a>
+                            <a href="/recommendation"><i class="fa fa-book" aria-hidden="true"></i>Recommendations</a>
+                            <a href="/monitoring"><i class="fa fa-binoculars" aria-hidden="true"></i>Monitoring</a>
+                            <a href="/request"><i class="fa fa-paper-plane" aria-hidden="true"></i>Request</a>
+                    </div>  
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12" ng-controller="TransCtrl">
+                        <h1>Portfolio</h1>
+                        <div class="well">
+                            <img class="profile-circle" src="{{viewuser.img}}">
+                            <div class="about">
+                                <h1>About</h1>
+                                <div style="width: 50%">
+                                    <h4><span style="float: left">Name:</span><span style="float: right">{{viewuser.username}}</span></h4><br><br>
+                                    <h4><span style="float: left">E-mail:</span><span style="float: right">{{viewuser.email}}</span></h4><br><br>
+                                    <h4><span style="float: left">Address:</span><span style="float: right">{{viewuser.address}}</span></h4><br><br>
+                                    <h4><span style="float: left">Age:</span><span style="float: right">{{viewuser.age}}</span></h4><br><br>
+                                    <h4><span style="float: left">Status:</span><span style="float: right">{{viewuser.status}}</span></h4><br><br>
+                                    <h4><span style="float: left">Ratings:</span><span style="float: right"><jk-rating-stars rating="secondRate" read-only="readOnly" ></jk-rating-stars>
+                                        <div style="width: 100px">{{secondRate}} Stars</div></span></h4><br><br>
+                                </div>
+                            </div>
+                            <div class="about">
+                                <h1>My Games Offer</h1>
+                                <div class="row">
+                                    <div class="col-sm-4" ng-repeat = "data in mygameoffer">
+                                        <img src="app/assets/img/{{data.gameId.img}}"><br>
+                                        Name:&nbsp;{{data.gameId.gamename}}<br>
+                                        Experience:&nbsp;{{data.years_experience}}&nbsp; years<br>
+                                        Game Level:&nbsp;{{data.game_level}}&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="about">
+                                <h1>My Games</h1>
+                                <div class="row">
+                                    <div class="col-sm-4" ng-repeat = "data in mygame">
+                                        <img src="app/assets/img/{{data.gameId.img}}"><br>
+                                        Name:&nbsp;{{data.gameId.gamename}}<br>
+                                        Experience:&nbsp;{{data.years_experience}}&nbsp; years<br>
+                                        Game Level:&nbsp;{{data.game_level}}&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="about">
+                                    <h1>Games as a  Service</h1>
+                                    <div class="row">
+                                        <div class="row">
+                                            <div class="col-sm-4" ng-repeat="data in mygameservice">
+                                                <img src="app/assets/img/{{data.gameId.img}}"><br>
+                                                Name:&nbsp;{{data.gameId.gamename}}<br>
+                                                Experience:&nbsp;{{data.years_experience}}&nbsp; years<br>
+                                                Service Fee:&nbsp;{{data.service_fee}}&nbsp;php<br>
+                                                Game Level:&nbsp;{{data.game_level}}&nbsp;
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <h1>Feedbacks</h1>
+                            <div class="row">
+                                <div class="col-lg-12" ng-repeat="data in reviews">
+                                    <div class="well">
+                                        <img class="review-circle" src="{{data.image}}">
+                                        <b>{{data.user}}</b><br>
+                                        <b>Comment:</b>&nbsp;{{data.comments}}&nbsp; 
+                                    </div>
+                                </div>
+                            </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+    <!-- Menu Toggle Script -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+-->
+
+

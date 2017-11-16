@@ -1,0 +1,124 @@
+        <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid"> 
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><img src="app/assets/img/logo.jpg.png"></a> 
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>                
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="fa fa-comment" aria-hidden="true"></i> Messages</a></li>
+                <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i> Notifications</a></li>
+                <li><a href="#" ng-click="user.Logout();"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+              </ul>  
+            </div>
+        </div>
+    </nav>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                    <div class="sidebar-userview">
+                        <a href="#!user"><img class="Circle" src="{{user.img}}"></a>
+                        <a href="#!name">{{user.username}}</a>
+                        <a href="#!email">{{user.email}}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="indent">
+                            <a href="/home"><i class="fa fa-search" aria-hidden="true"></i>Home</a>
+                            <a href="/account/{{user.id}}"><i class="fa fa-id-card-o" aria-hidden="true"></i>Edit Account</a>
+                            <a href="/portfolio"><i class="fa fa-folder" aria-hidden="true"></i>My Portfolio</a>
+                            <a href="/recommendation"><i class="fa fa-book" aria-hidden="true"></i>Recommendations</a>
+                            <a href="/monitoring"><i class="fa fa-binoculars" aria-hidden="true"></i>Monitoring</a>
+                            <a href="/request"><i class="fa fa-paper-plane" aria-hidden="true"></i>Request</a>
+                    </div>  
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                        <form name = "edit.userForm" ng-submit="edit.updateName(newUsername, newAddress , newAge, newStatus)">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Username Input -->
+                                    <div class="form-group">
+                                        <label>Username:</label>
+                                        <input class="form-control" type="text" name="username" placeholder="username *" ng-model="newUsername" autocomplete="off">
+                                    </div>
+                                    <!-- Address Input -->
+                                    <div class="form-group">
+                                        <label>Address:</label>
+                                        <input class="form-control" type="text" name="address" placeholder="address *" ng-model="newAddress">
+                                    </div>
+                                    <!-- Age Input -->
+                                    <div class="form-group">
+                                        <label>Age:</label>
+                                        <input class="form-control" type="number" name="age" placeholder="age *" ng-model="newAge">
+                                    </div>
+                                    <!-- Status -->
+                                    <div class="form-group">
+                                        <label>Status:</label>
+                                        <button type="button" class="btn btn-primary" ng-click="deactivateModal();">Deactivate</button>
+                                        <!-- <select class="form-control" name="status" ng-model="newStatus">
+                                            <option value="Active">Active</option>
+                                            <option value="Deactivate">Deactivate</option>
+                                        </select>                                      -->
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-lg-12 text-left">
+                                    <div>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </form>
+            </div>
+            <div class="modal fade" id="showDeactivateModal" role="dialog">
+                    <div class="modal-dialog">
+            
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Deactivate Account</h2>
+                            </div>
+                            <div class="modal-body">
+                                {{message}}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" ng-hide="user.hideButton" ng-click="deactivate();" class="btn btn-primary">Yes</button>
+                                <button type="button" ng-hide="user.hideButton" ng-click="hideDeactivateModal();" class="btn btn-primary" data-dismiss="modal">No</button>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+        
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+    <!-- Menu Toggle Script -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+-->
+
+

@@ -1,0 +1,135 @@
+        <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid"> 
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><img src="app/assets/img/logo.jpg.png"></a> 
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>                
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="fa fa-comment" aria-hidden="true"></i> Messages</a></li>
+                <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i> Notifications</a></li>
+                <li><a href="#" ng-click="user.Logout();"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+              </ul>  
+            </div>
+        </div>
+    </nav>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                    <div class="sidebar-userview">
+                        <a href="#!user"><img class="Circle" src="{{user.img}}"></a>
+                        <a href="#!name">{{user.username}}</a>
+                        <a href="#!email">{{user.email}}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="indent">
+                        <a href="/home"><i class="fa fa-search" aria-hidden="true"></i>Home</a>
+                        <a href="/account/{{user.id}}"><i class="fa fa-id-card-o" aria-hidden="true"></i>Edit Account</a>
+                        <a href="/portfolio"><i class="fa fa-folder" aria-hidden="true"></i>My Portfolio</a>
+                        <a href="/recommendation"><i class="fa fa-book" aria-hidden="true"></i>Recommendations</a>
+                        <a href="/monitoring"><i class="fa fa-binoculars" aria-hidden="true"></i>Monitoring</a>
+                        <a href="/request"><i class="fa fa-paper-plane" aria-hidden="true"></i>Request</a>
+                    </div>  
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row" >
+                        <h1>Find a Pilot</h1>
+                    <div class="well">                      
+                            <!-- Game name Input -->
+                            <label for="gamelist">Game Name</label>
+                            <label></label>
+                            <select class="form-control" name="gamelist" id="gamelist" ng-change="change()" ng-model="id">
+                                <option ng-repeat="option in viewcurrentgame" value="{{option.gameId._id}}" >{{option.gameId.gamename}}</option>    
+                                
+                            </select>    
+                            <br>
+                            <!-- Game Level Input -->
+                            <label>Pilotplayer Game Level:</label>
+                                <rzslider rz-slider-model="gameLevelMinslider.value" rz-slider-options="gameLevelMinslider.options"></rzslider>
+                            <br>
+                            <!-- Experience Input -->
+                            <label>Years of Experience:</label>
+                                <rzslider rz-slider-model="yearsMinslider.value" rz-slider-options="yearsMinslider.options"></rzslider>
+                            <br>
+                            <!-- Price Input -->
+                                <label>Professional Fee:</label>
+                            <rzslider rz-slider-model="proMinslider.value"  rz-slider-options="proMinslider.options"></rzslider>
+                            <br>
+                            <button type="button" ng-click="findApilot(id)" class="btn btn-primary">Find</button>
+                                      
+                    </div>
+                        <h1>Results</h1>
+                        <div class="row">
+                            <div class="col-lg-12" ng-repeat="option in pilotplayers | orderBy:'-ratings'" ng-show="pilot">
+                                <div class ="well">
+                                    <figure>
+                                           <figcaption><img src ="{{option.img}}"></figcaption>
+                                           <figcaption><h4>Name:&nbsp;{{option.name}}</h4></figcaption>
+                                           <figcaption><span><jk-rating-stars rating="option.ratings" read-only="readOnly" ></jk-rating-stars>
+                                            <div style="width: 100px">{{option.ratings}} Stars</div></span></h4><br><br></figcaption>
+                                            <h4 ng-hide="id">{{option._id}}</h4>
+                                            <h4 ng-hide="id">{{option.service_fee}}</h4>                                                          
+                                            <button type="button" ng-click="sendRequest(option._id, option.service_fee);" class="btn btn-primary" >Hire Pilot</button>
+                                    
+                                                <a href="/viewuser/{{option._id}}" target="_blank">
+                                                    <button type="button" class="btn btn-info">View Portfolio</button>
+                                                </a>                
+                                            
+                                    </figure>
+                                </div>               
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>            
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <div class="modal fade" id="promptModal" role="dialog">
+            <div class="modal-dialog">
+        
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Message</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{alert}}</p>
+                        <div ng-show="user.hideButton" class="pixel-loader"></div>
+    
+                    </div>
+                    <div class="modal-footer">
+               
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+    <!-- Menu Toggle Script -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+-->
+
+

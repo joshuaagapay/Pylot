@@ -1,0 +1,296 @@
+        <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid"> 
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><img src="app/assets/img/logo.jpg.png"></a> 
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                </button>                
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><i class="fa fa-comment" aria-hidden="true"></i> Messages</a></li>
+                <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i> Notifications</a></li>
+                <li><a href="#" ng-click="user.Logout();"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+              </ul>  
+            </div>
+        </div>
+    </nav>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                    <div class="sidebar-userview">
+                        <a href="#!user"><img class="Circle" src="{{user.img}}"></a>
+                        <a href="#!name">{{user.username}}</a>
+                        <a href="#!email">{{user.email}}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="indent">
+                            <a href="/home"><i class="fa fa-search" aria-hidden="true"></i>Home</a>
+                            <a href="/account/{{user.id}}"><i class="fa fa-id-card-o" aria-hidden="true"></i>Edit Account</a>
+                            <a href="/portfolio"><i class="fa fa-folder" aria-hidden="true"></i>My Portfolio</a>
+                            <a href="/recommendation"><i class="fa fa-book" aria-hidden="true"></i>Recommendations</a>
+                            <a href="/monitoring"><i class="fa fa-binoculars" aria-hidden="true"></i>Monitoring</a>
+                            <a href="/request"><i class="fa fa-paper-plane" aria-hidden="true"></i>Request</a>
+                    </div>  
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Monitoring</h1> 
+                        <div class="well">
+                            <div class="about">
+                                <h1>Games Piloted as a Service </h1>
+                                <div class="row">
+                                    <div class="col-sm-4" ng-repeat="data in currentpiloted">
+                                        <figure>
+                                            <figcaption><img src="app/assets/img/{{data.gameId.img}}"></figcaption>
+                                            <h4 ng-hide="id">{{data._id}}</h4>
+                                            <figcaption>{{data.gameId.gamename}}</figcaption>
+                                            <figcaption>Game Owner:{{data.pilotseekerId.username}}&nbsp;</figcaption>
+                                            <figcaption>Goal:{{data.goal}}&nbsp;</figcaption>
+                                            <figcaption>Status:{{data.status}}&nbsp;</figcaption>
+                                            <button type="button" ng-click="monitor.showUpdategames(data._id);" class="btn btn-primary">View Details</button>
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="about">
+                                <h1>My Games Piloted </h1>
+                                <div class="row">
+                                    <div class="col-sm-4" ng-repeat="data1 in gamemonitoring">
+                                        <img src="app/assets/img/{{data1.gameId.img}}"><br>
+                                        <h4 ng-hide="id">{{data1._id}}</h4>
+                                        Name:{{data1.gameId.gamename}}<br>
+                                        Pilot Player:{{data1.pilotplayerId.username}}&nbsp;<br>
+                                        Goal:{{data1.goal}}&nbsp;<br>
+                                        Status:{{data1.status}}&nbsp;<br>
+                                        <button type="button" ng-click="monitor.showUpdategames(data1._id);" class="btn btn-primary">View Details</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="about">
+                                    <h1>Finished Transactions</h1>
+                                    <div class="row">
+                                        <div class="col-sm-4" ng-repeat="data2 in donepiloted">
+                                            <img src="app/assets/img/{{data2.gameId.img}}"><br>
+                                            <h4 ng-hide="id">{{data2._id}}</h4>
+                                            <h4 ng-hide="id">{{data2.pilotplayerId._id}}</h4>
+                                            Name:{{data2.gameId.gamename}}<br>
+                                            Pilot Player:{{data2.pilotplayerId.username}}&nbsp;<br>
+                                            Goal:{{data2.goal}}&nbsp;<br>
+                                            Status:{{data2.status}}&nbsp;<br>
+                                            <div ng-show="buttons">
+                                                <button type="button" ng-click="monitor.showratePilot(data2.pilotplayerId._id);" class="btn btn-primary">Rate</button>
+                                                <button type="button" ng-click="monitor.showcomplaintsPilot(data2.pilotplayerId._id);" class="btn btn-primary">Complaints</button>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+        <div class="modal fade" id="updateGamesModal" role="dialog">
+                <div class="modal-dialog">
+        
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Game Progress</h2>
+                        </div>
+                        <div class="modal-body">
+                            <form ng-submit="updateGames(levelgain);">                       
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" ng-style="{'width':progress + '%'}">{{progress}}%</div><br><br>
+                                <h4>Total Level Remaining:&nbsp;{{levelremain}}</h4>
+                                <h4>Game Level:&nbsp;{{current_level}}</h4>
+                                <h4 ng-show="process">Level Gain:&nbsp;{{levelgain}}</h4>
+                                <h4>Pilotplayer Fee:&nbsp;{{pilotplayerFee}}php</h4>
+                                <button type="submit" ng-show="process" class="btn btn-primary">Save</button> 
+                                <button type="button" ng-show="done" ng-click="donePilot();" class="btn btn-primary">Done</button>
+                                <button type="button" ng-show="process" ng-click="gain();" class="btn btn-primary">Level Gain</button>
+                                <a href="http://res.cloudinary.com/pylotapp/image/upload/v1505880681/SA_-_SEEKER_TO_PLAYER_b32uiz.pdf">Download Service Agreement PDF</a>         
+                            </form> 
+                            <div ng-show="alert">
+                                <div ng-class="alert">{{alert}}</div>
+                            </div>
+    
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-hide="user.hideButton" ng-click="addgames.closeModal();" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+             </div>
+             <div class="modal fade" id="ratesGamesModal" role="dialog">
+                    <div class="modal-dialog">
+            
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Rates User</h2>
+                            </div>
+                            <div class="modal-body">
+                                <form ng-submit="updateGames(updateGame);">                       
+                                       
+                                        <jk-rating-stars rating="firstRate" ></jk-rating-stars>
+                                        <div style="width: 100px">{{firstRate}} Stars</div>
+
+                                        <textarea class="form-control" rows="5" ng-model="comments"id="comment"></textarea>
+
+                                    <button type="button" ng-click="ratePilot(comments)" class="btn btn-primary">Rate Pilot</button>          
+                                </form> 
+                                <div ng-show="message">
+                                    <div ng-class="alert">{{message}}</div>
+                                </div>
+        
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" ng-hide="user.hideButton" ng-click="addgames.closeModal();" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="modal fade" id="complaintsGamesModal" role="dialog">
+                        <div class="modal-dialog">
+                
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2>Complaints User</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <form ng-submit="updateGames(updateGame);">                       
+    
+                                            <textarea class="form-control" rows="5" ng-model="complaints"id="comment"></textarea>
+    
+                                        <button type="submit" ng-click="complaintsPilot(complaints)" class="btn btn-primary">Save</button>          
+                                    </form> 
+                                    <div ng-show="message">
+                                        <div ng-class="alert">{{message}}</div>
+                                    </div>
+            
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" ng-hide="user.hideButton" ng-click="addgames.closeModal();" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                     <div class="modal fade" id="promptModal2" role="dialog">
+                            <div class="modal-dialog">
+                        
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4>Message</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>{{alert}}</p>
+                                        <div ng-show="user.hideButton" class="pixel-loader"></div>
+                    
+                                    </div>
+                                    <div class="modal-footer">
+                               
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     <div id="testdiv" style="display: none">              
+                         
+                        <h2>SERVICE AGREEMENT</h2><br>
+
+
+                        This Agreement is between<br>
+                        Pylot<br>
+                        Hereinafter referred to as the First Party<br>
+ 
+                        ,<br>
+
+                        Pilot Player<br>
+                        hereinafter referred to as the Second Party<br>
+
+                        and<br>
+
+                        Pilot Seeker<br>
+                        hereinafter referred to as the Third Party<br>
+
+
+
+                        1.	Whereas SECOND AND THIRD PARTY agreed that the job is upgrading of the account<br> from <current level> to <target level>;<br>
+
+                        2.	That the monitoring of the game will be done by the THIRD PARTY.<br>
+
+                        3.	That the FIRST PARTY will not be responsible for the loss of any in-game properties<br> owned by the THIRD PARTY.<br>
+
+                        4.	General Responsibilities of the FIRST PARTY<br>
+
+                        4.1.	That the FIRST PARTY agrees to perform the following functions in relation to the<br>
+                        4.1.1.	Send Payment to the SECOND PARTY according to finished milestone<br>
+                        4.1.2.	Cooperate to THIRD PARTY if there are issues among the hired player<br>
+
+
+                        5.	General Responsibilities of the SECOND PARTY<br>
+
+                        5.1.	That the SECOND PARTY agrees to perform the following functions<br> in relation to the above undertaking:<br>
+                        5.1.1.	Update the THIRD PARTY about the milestones accomplished.<br>
+                        5.1.2.	Finish milestones according to the timeline given.<br>
+                        5.1.3.	Turnover game account credentials to the THIRD PARTY when the target level is achieved.<br>
+
+                        6.	General Responsibilities of the THIRD PARTY<br>
+
+                        6.1.	That the THIRD PARTY agrees to perform the following functions<br> in relation to the above undertaking:<br>
+                        6.1.1.	Provide milestone timeline to the SECOND PARTY<br>
+                        6.1.2.	Inform the SECOND PARTY on the schedule/timeline of the undertaking<br>
+                        6.1.3.	Monitor the milestones accomplished by the FIRST PARTY<br>
+                        6.1.4.	Inform FIRST PARTY about the accomplished milestones.<br>
+                        6.1.5.	Provide feedback to SECOND PARTY after every successful transactions<br>
+
+                        7.	COMPENSATION TO THE SECOND PARTY. The THIRD PARTY shall compensate the SECOND PARTY<br> in the agreed amount as professional fee.<br>
+
+                        8.	COMMISSION. That the FIRST PARTY will have a 10% charge<br> in every transactions made by the SECOND PARTY.<br>
+
+
+                        9.	PAYMENTS DISTRIBUTION. That in consideration of the said professional fee,<br> the distribution will be breakdown into four payments according to:<br>
+
+                        9.1.	First payment: 25% progress of the whole pilot job.<br>
+                        9.2.	Second payment: 25% progress of the whole pilot job.<br>
+                        9.3.	Third payment: 25% progress of the whole pilot job.<br>
+                        9.4.	Final payment: 25% progress of the whole pilot job.<br>
+
+                        10.	That in the event that the THIRD PARTY will terminate the contract,<br> the THIRD PARTY will still pay the SECOND PARTY according to the achieved milestone.<br>
+
+                        11.	That in the event that the SECOND PARTY will terminate the contract,<br> the THIRD PARTY may report the SECOND PARTY for not being a good pilot player<br> or the THIRD PARTY can give a comment to the SECOND PARTY.<br>
+
+                     </div>
+    
+
+    </div>
+    <!-- /#wrapper -->
+
+
+    <!-- Menu Toggle Script -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+-->
+
+

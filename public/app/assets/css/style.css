@@ -1,0 +1,261 @@
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	background-repeat: no-repeat;
+/*	background: url(../img/wow.jpg);*/
+	background-size: cover;
+	font-family: 'Roboto', sans-serif;
+	background-attachment: fixed;
+}
+
+h1,h2,h3,h4,h5,h6,a{
+	font-family: 'Monda', sans-serif !important;
+}
+
+.white-text{
+	color: #fff;
+}
+
+.text-center{
+	text-align: center;
+}
+
+.mob-scale{
+	width: 1024px;
+}
+
+/*
+.navbar{
+	margin: 0 !important;
+	position: fixed;
+	width: 100%;
+	background: #fff;
+}
+
+.navbar .navigation{
+	margin: 0 auto;
+	padding: 10px;
+}
+
+.navbar .navigation .brand-box{
+	display: inline-block;
+	width: 140px;
+	height: auto;
+	margin: 0;
+
+}
+
+.navbar .navigation .brand-box img{
+	width: 100%;
+	vertical-align: middle;
+}
+
+.navbar .navigation .link-box{
+	float: right;
+	list-style: none;
+	margin: 0;
+	padding: 15px;
+}
+
+.navbar .navigation .link-box li{
+	display: inline-block;
+	padding: 0px 15px;
+}
+
+.navbar .navigation .link-box li a{
+	color: #E4286D;
+	text-decoration: none;
+}
+
+.navbar .navigation .link-box li a:hover{
+	color: #BC4B9B;
+}
+*/
+
+.pixel-loader {
+  width: 10px;
+  height: 10px;
+  background: #f35626;
+  color: #f35626;
+  margin: 80px auto;
+  box-shadow: 15px 15px  0 0,
+                -15px -15px  0 0,
+                15px -15px  0 0,
+                -15px 15px  0 0,
+                0 15px  0 0,
+                15px 0  0 0,
+                -15px 0  0 0,
+                0 -15px 0 0;
+  animation: anim 2s linear infinite;
+}
+
+@keyframes anim {
+  0% {
+    -webkit-filter: hue-rotate(0deg);
+  }
+  50% {
+    box-shadow: 20px 20px  0 0,
+                -20px -20px  0 0,
+                20px -20px  0 0,
+                -20px 20px  0 0,
+                0 10px  0 0,
+                10px 0  0 0,
+                -10px 0  0 0,
+                0 -10px 0 0;
+  }
+  
+  75% {
+    box-shadow: 20px 20px  0 0,
+                -20px -20px  0 0,
+                20px -20px  0 0,
+                -20px 20px  0 0,
+                0 10px  0 0,
+                10px 0  0 0,
+                -10px 0  0 0,
+                0 -10px 0 0;
+  }
+  
+  100% {
+    transform: rotate(360deg);
+    -webkit-filter: hue-rotate(360deg);
+  }
+}
+
+.mob-bar{
+	position: relative;
+	display: none;
+	float: right;
+	top: 10px;
+	right: 25px;
+	height: 20px;
+	width: 20px;
+	padding: 5px;
+}
+
+.mob-bar.active{
+	display: block ;
+}
+
+.mob-bar .bar{
+	display: block;
+	height: 2px;
+	margin-bottom: 4px;
+	background: #E4286D;
+}
+
+
+.cta-section{
+	background: rgba(19,70,150,0.3);
+}
+
+.cta-section .cta-card{
+	margin: 0 auto;
+	padding: 18% 0 15% 0;
+	text-align: center;
+}
+
+
+.cta-section .cta-card h1{
+	font-size: 45px;
+	font-weight: 700;
+	color: #fff;
+	margin-bottom: 30px;
+}
+
+.cta-section .cta-card .cta-btn{
+	margin: 20px 0px;
+	background: #3b5998;
+	text-decoration: none;
+	color: #fff;
+	padding: 10px;
+	border-radius: 5px;
+	font-size: 20px;
+}
+
+.cta-section .cta-card a:hover{
+	color: #fff;
+}
+
+.cta-section .cta-card a:active{
+/*	background: #E4286D;*/
+	box-shadow: inset 0px 3px 4px rgba(0,0,0,0.2);
+}
+
+.team-section{
+	background: #001a33;
+	padding: 12%;
+}
+
+.team-section .team-card{
+	margin: 0 auto;
+}
+
+.team-section h1{
+	color: #fff;
+	text-align: center;
+}
+
+/*
+.team-group{
+	margin: 80px 0px;
+}
+*/
+
+.team-box{
+	width: 190px;
+	margin: 0 auto;
+}
+
+.team-box .team-img{
+	border-radius: 100%;
+	height: 180px;
+	width: 180px; 
+	margin: 50px auto;
+	border: 5px solid #fff;
+	overflow: hidden;
+}
+
+.team-box .team-img img{
+	width: 120%;
+	height: auto;
+	position: relative;
+	right: 10%;
+}
+
+.mythumbnail {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+}
+
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}
+
+@media (max-width: 1024px){
+	.mob-scale{
+		width: 100% !important;
+	}
+	.mob-bar{
+		display: block !important;
+	}
+	.link-box{
+		position: fixed;
+		top: 69px;
+		right: -100%;
+		background: rgba(0,0,0,0.5);
+		height: 100vh;
+		-webkit-transition: all 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;
+	}
+	.link-box.active{
+		right: 0;
+		-webkit-transition: all 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;
+	}
+	.link-box li{
+		padding: 20px 30px !important;
+		display: block !important;
+	}
+}

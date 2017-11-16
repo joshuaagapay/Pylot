@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pylotApp">
+    <head>
+        <base href="/">
+      
+        <title>Pylot</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+          
+        <!-- AngularJS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+        <script src="app/app.js"></script>
+        <script src="app/routes.js"></script>
+        <script src="app/controllers/account.js"></script>
+        <script src="app/controllers/facebook.js"></script>
+        <script src="app/controllers/portfolio.js"></script>
+        <script src="app/controllers/transaction.js"></script>
+        <script src="app/controllers/monitoring.js"></script>
+
+        
+        <!--AnuglarJS Directive -->
+        <script src="app/directive/fileModel.js"></script>
+        
+        <!--Angular Services-->
+        <script src="app/services/authServices.js"></script>
+        <script src="app/services/userServices.js"></script>
+        <script src="app/services/uploadFileServices.js"></script>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-  BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
+        <link rel="stylesheet" href="app/assets/css/bootstrap-social.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/css/bootstrap-slider.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.4.0/rzslider.min.css"> 
+        <script src="https://use.fontawesome.com/34235d60dc.js"></script>
+      
+        <!--Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="app/assets/css/style.css">
+        <link rel="stylesheet" type="text/css" href="app/assets/css/pylot.css" >
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">        
+        <link rel="stylesheet" type="text/css" href="app/assets/css/jk-rating-stars.min.css" />
+        
+      
+    </head>
+
+  <body ng-controller ="AccountCtrl as user">
+      <div ng-view></div>
+      
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+    
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" ng-click="user.endSession();" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{user.modalHeader}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{user.modalBody}}</p>
+                    <div ng-show="user.hideButton" class="pixel-loader"></div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-hide="user.hideButton" ng-click="user.renewSession();" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                    <button type="button" ng-hide="user.hideButton" ng-click="user.endSession();"class="btn btn-danger" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+       <!-- jQuery first, then Tether, then Bootstrap JS. -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/bootstrap-slider.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.4.0/rzslider.min.js"></script>
+        <script src="app/assets/js/jk-rating-stars.min.js"></script>
+      <script>
+        $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        });
+      </script>     
+  </body>
+</html>
